@@ -6,11 +6,15 @@ const images = [
   "./images/wildebeest.jpg",
   "./images/zebra.jpg",
 ];
+
 const thumbnailContainer = document.getElementById("thumbnail-container");
 let currentIndex = 0;
 
 function updateBackground() {
   document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundRepeat = "no-repeat";
 }
 
 images.forEach((src, index) => {
@@ -18,13 +22,11 @@ images.forEach((src, index) => {
   img.src = src;
   img.alt = `Thumbnail of ${src.split("/").pop().split(".")[0]}`;
   img.classList.add("thumbnail");
-
   img.addEventListener("click", () => {
     currentIndex = index;
     updateBackground();
     backgroundMusic.play();
   });
-
   thumbnailContainer.appendChild(img);
 });
 
